@@ -1,0 +1,64 @@
+/* Task Item Title Truncation Fix */
+.task-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  display: block;
+}
+
+.task-title-tooltip:hover .task-title {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Modal Z-Index Standardization */
+.modal-backdrop {
+  z-index: 9998;
+}
+
+.modal-container {
+  z-index: 9999;
+}
+
+.toast-container {
+  z-index: 10000;
+}
+
+.confirmation-modal {
+  z-index: 10001; /* Highest priority for confirmations */
+}
+
+/* Offline Indicator */
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10002;
+  background-color: #f59e0b;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive checkbox touch area */
+@media (max-width: 768px) {
+  input[type="checkbox"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

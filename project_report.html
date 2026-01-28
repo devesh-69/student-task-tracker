@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Book - Student Task Tracker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.5;
+            color: #000;
+            max-width: 210mm; /* A4 Width */
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        /* Print Styling - Ensures it looks like a document */
+        @media print {
+            body { margin: 0; padding: 0; width: 100%; }
+            .page-break { page-break-after: always; }
+            .no-print { display: none; }
+        }
+
+        /* General Typography */
+        h1, h2, h3, h4 { margin-bottom: 10px; color: #000; }
+        
+        /* Titles */
+        .report-title { font-size: 24pt; font-weight: bold; text-align: center; text-transform: uppercase; margin-bottom: 5px; }
+        .sub-title { font-size: 16pt; font-weight: bold; text-align: center; margin-bottom: 40px; }
+        
+        /* Section Headers */
+        h1.chapter-head { 
+            font-size: 20pt; 
+            text-align: center; 
+            text-transform: uppercase; 
+            margin-top: 50px; 
+            margin-bottom: 30px; 
+            text-decoration: underline;
+        }
+
+        h2.section-head { font-size: 16pt; margin-top: 25px; margin-bottom: 15px; }
+        h3.sub-section-head { font-size: 14pt; margin-top: 20px; font-weight: bold; }
+        
+        p { text-align: justify; font-size: 12pt; margin-bottom: 15px; }
+        li { font-size: 12pt; margin-bottom: 5px; text-align: justify; }
+        
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12pt; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; vertical-align: top; }
+        th { background-color: #f2f2f2; font-weight: bold; text-align: center; }
+
+        /* Helpers */
+        .center { text-align: center; }
+        .bold { font-weight: bold; }
+        .uppercase { text-transform: uppercase; }
+        .page-break { page-break-after: always; min-height: 100vh; display: flex; flex-direction: column; }
+        .content-page { min-height: auto; display: block; }
+        
+        /* Cover Page Specifics */
+        .cover-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 90vh; /* Fill page */
+            padding-top: 50px;
+            padding-bottom: 50px;
+            border: 1px solid transparent; /* Box model fix */
+        }
+        
+        .submitted-by { margin-top: 60px; text-align: center; font-size: 14pt; }
+        .college-section { text-align: center; font-size: 14pt; font-weight: bold; margin-top: auto; }
+        
+        /* Diagrams */
+        .diagram-placeholder {
+            border: 2px dashed #000;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            font-style: italic;
+            background: #fafafa;
+        }
+
+        /* Certificate Border */
+        .certificate-border {
+            border: 2px solid #000;
+            padding: 40px;
+            height: 90vh;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER PAGE -->
+    <div class="page-break">
+        <div class="cover-container">
+            <div>
+                <div class="report-title">A PROJECT REPORT ON</div>
+                <div class="report-title" style="color: #2563eb;">“STUDENT TASK TRACKER”</div>
+                <div class="sub-title">(Using React.js, Tailwind CSS & Generative AI)</div>
+            </div>
+
+            <div class="submitted-by">
+                <p class="center"><strong>SUBMITTED BY</strong></p>
+                <p class="center" style="font-size: 16pt; margin-top: 10px;">MR. DEVESH SUNIL TATKARE</p>
+                <p class="center">[ PRN NUMBER HERE ]</p>
+            </div>
+
+            <div class="submitted-by">
+                <p class="center"><strong>UNDER THE GUIDANCE OF</strong></p>
+                <p class="center" style="font-size: 16pt;">PROF. [GUIDE NAME]</p>
+            </div>
+
+            <div class="college-section">
+                <p>SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR</p>
+                <p>MINI PROJECT (SEMESTER 1)</p>
+                <br>
+                <p style="font-size: 18pt;">[ YOUR COLLEGE NAME HERE ]</p>
+                <p>[ CITY, PIN CODE ]</p>
+                <br>
+                <p>ACADEMIC YEAR 2024 – 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: CERTIFICATE -->
+    <div class="page-break">
+        <div class="certificate-border">
+            <h1 class="chapter-head" style="margin-top: 0;">CERTIFICATE</h1>
+            <br>
+            <p>This is to certify that the project entitled <strong>"STUDENT TASK TRACKER"</strong> is a bonafide work carried out by <strong>Mr. DEVESH SUNIL TATKARE</strong> under the supervision of <strong>Prof. [Guide Name]</strong> in partial fulfillment of the requirements for the Mini Project.</p>
+            
+            <p>To the best of my knowledge, the matter embodied in this project has not been submitted to any other University or Institute for the award of any degree or diploma.</p>
+            
+            <br><br><br>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 100px;">
+                <div class="center">
+                    <strong>Project Guide</strong><br>
+                    Prof. [Guide Name]
+                </div>
+                <div class="center">
+                    <strong>Head of Department</strong><br>
+                    Prof. [HOD Name]
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 80px;">
+                <div class="center">
+                    <strong>Internal Examiner</strong>
+                </div>
+                <div class="center">
+                    <strong>External Examiner</strong>
+                </div>
+            </div>
+            
+            <div class="center" style="margin-top: 60px;">
+                <strong>College Seal</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: ACKNOWLEDGEMENT -->
+    <div class="page-break">
+        <h1 class="chapter-head">ACKNOWLEDGEMENT</h1>
+        
+        <p>Success is the outcome of the hard work and perseverance of an individual, but the guidance and support of mentors play a pivotal role. I would like to take this opportunity to express my gratitude to all those who helped me in the completion of this project.</p>
+
+        <p>I express my sincere thanks to my project guide, <strong>Prof. [Guide Name]</strong>, for their valuable guidance, constant encouragement, and constructive criticism throughout the development of the "Student Task Tracker".</p>
+
+        <p>I am also grateful to the <strong>Principal</strong> and the <strong>Management</strong> of <strong>[Your College Name]</strong> for providing the necessary infrastructure and laboratory facilities.</p>
+
+        <p>Lastly, I would like to thank my friends and family for their unwavering support and motivation, which helped me overcome the challenges faced during this project.</p>
+        
+        <br><br>
+        <p style="text-align: right;"><strong>Devesh Sunil Tatkare</strong></p>
+    </div>
+
+    <!-- PAGE 4: INDEX -->
+    <div class="page-break">
+        <h1 class="chapter-head">INDEX</h1>
+        <table>
+            <tr>
+                <th style="width: 10%;">SR. NO.</th>
+                <th style="width: 70%;">TITLE</th>
+                <th style="width: 20%;">PAGE NO.</th>
+            </tr>
+            <tr><td class="center">1</td><td><strong>INTRODUCTION</strong></td><td class="center">1</td></tr>
+            <tr><td class="center"></td><td>1.1 Introduction of the Project (SRS)</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>1.2 Problem Definition</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>1.3 Objective of Project</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>1.4 Scope of Project</td><td class="center"></td></tr>
+            
+            <tr><td class="center">2</td><td><strong>SYSTEM STUDY</strong></td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>2.1 Existing System</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>2.2 Disadvantages of Existing System</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>2.3 Proposed System</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>2.4 Use Cases</td><td class="center"></td></tr>
+
+            <tr><td class="center">3</td><td><strong>ANALYSIS & DESIGN</strong></td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>3.1 Hardware & Software Requirements</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>3.2 Technologies Used (Tech Stack)</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>3.3 Diagrams (DFD, ER)</td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>3.4 Module Design</td><td class="center"></td></tr>
+
+            <tr><td class="center">4</td><td><strong>TESTING & VALIDATION</strong></td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>4.1 Test Cases</td><td class="center"></td></tr>
+
+            <tr><td class="center">5</td><td><strong>USER MANUAL</strong></td><td class="center"></td></tr>
+            <tr><td class="center"></td><td>5.1 Key Functions</td><td class="center"></td></tr>
+
+            <tr><td class="center">6</td><td><strong>OBSTACLES FACED</strong></td><td class="center"></td></tr>
+
+            <tr><td class="center">7</td><td><strong>CONCLUSION</strong></td><td class="center"></td></tr>
+
+            <tr><td class="center">8</td><td><strong>REFERENCES</strong></td><td class="center"></td></tr>
+        </table>
+    </div>
+
+    <!-- CHAPTER 1: INTRODUCTION -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 1: INTRODUCTION</h1>
+
+        <h2 class="section-head">1.1 Introduction of the Project (SRS)</h2>
+        <p>In today’s fast-paced academic environment, students often struggle to keep track of their numerous assignments, projects, and study deadlines. The <strong>Student Task Tracker</strong> is a web-based application developed to solve this problem. It is a "Single Page Application" (SPA) built using React.js that allows students to organize their academic life efficiently.</p>
+        <p>The project leverages <strong>Current Trends in IT</strong>, specifically <strong>Generative AI</strong> (via the Gemini API) to help students plan their work, and <strong>Reactive Web Architecture</strong> to provide a seamless, app-like experience without page reloads. The system is designed to be "Offline-First," storing data securely on the user's device using LocalStorage.</p>
+
+        <h2 class="section-head">1.2 Problem Definition</h2>
+        <p>The core problems faced by students that this project addresses are:</p>
+        <ul>
+            <li><strong>Disorganization:</strong> Students rely on scattered notes, physical diaries, or memory to track deadlines, leading to forgotten assignments.</li>
+            <li><strong>Lack of Planning:</strong> Even if a task is noted, students often don't know "how" to start. They lack a breakdown of complex tasks.</li>
+            <li><strong>Poor Visualization:</strong> Traditional to-do lists are static text. They do not show "how much" of a task is done (e.g., 50% vs 90%).</li>
+        </ul>
+
+        <h2 class="section-head">1.3 Objective of Project</h2>
+        <p>The primary objectives of the Student Task Tracker are:</p>
+        <ul>
+            <li>To develop a user-friendly interface for Creating, Reading, Updating, and Deleting (CRUD) academic tasks.</li>
+            <li>To integrate <strong>Artificial Intelligence</strong> to suggest sub-tasks and breakdowns for study topics.</li>
+            <li>To implement a visual <strong>Progress Tracking</strong> system (Interactive Sliders and Progress Bars).</li>
+            <li>To use <strong>Gamification</strong> (Audio effects and Animations) to motivate students upon task completion.</li>
+            <li>To ensure data persistence without requiring a complex backend server setup.</li>
+        </ul>
+
+        <h2 class="section-head">1.4 Scope of Project</h2>
+        <p>The scope of this project is focused on a <strong>Personal Academic Manager</strong> for a single user.</p>
+        <ul>
+            <li><strong>In Scope:</strong> Task management, AI study planning, Deadline tracking, Local data storage, Responsive mobile design.</li>
+            <li><strong>Out of Scope:</strong> Multi-user collaboration, Cloud database synchronization, Payment gateways.</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 2: SYSTEM STUDY -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 2: SYSTEM STUDY</h1>
+
+        <h2 class="section-head">2.1 Existing System</h2>
+        <p>Currently, students use methods such as:</p>
+        <ul>
+            <li><strong>Physical Planners/Diaries:</strong> These are prone to damage and loss. They offer no reminders or automation.</li>
+            <li><strong>Generic Note Apps (e.g., Notepad, Keep):</strong> These apps store text but do not understand "Dates" or "Progress". They cannot calculate "Days Remaining" or show progress bars.</li>
+        </ul>
+
+        <h2 class="section-head">2.2 Disadvantages of Existing System</h2>
+        <ul>
+            <li><strong>No Intelligence:</strong> A physical diary cannot tell you how to solve a math assignment; it only records that you have one.</li>
+            <li><strong>Static Data:</strong> You cannot interactively slide a progress bar on paper.</li>
+            <li><strong>Accessibility:</strong> Paper notes are not accessible in dark environments or if left at home.</li>
+        </ul>
+
+        <h2 class="section-head">2.3 Proposed System</h2>
+        <p>The <strong>Student Task Tracker</strong> digitizes the entire process. It transforms a static "To-Do List" into a dynamic "Task Dashboard".</p>
+        <p><strong>Key Advantages:</strong></p>
+        <ul>
+            <li><strong>AI-Powered:</strong> The system acts as a study companion, suggesting how to approach tasks.</li>
+            <li><strong>Visual & Interactive:</strong> Users can visually see their workload and interact with tasks using touch gestures (Long Press) and sliders.</li>
+            <li><strong>Responsive:</strong> Works perfectly on Mobile phones and Laptops.</li>
+        </ul>
+
+        <h2 class="section-head">2.4 Use Cases</h2>
+        <p>The following actors and use cases define the system interaction:</p>
+        <ul>
+            <li><strong>Actor:</strong> Student (Devesh)</li>
+            <li><strong>Use Case 1 - Add Task:</strong> The student inputs a task title (e.g., "Mini Project Report"). The system saves it.</li>
+            <li><strong>Use Case 2 - Get AI Help:</strong> The student clicks "AI Assist". The system uses Gemini API to break the task into steps (e.g., "1. Draft Introduction, 2. Design Diagrams...").</li>
+            <li><strong>Use Case 3 - Track Progress:</strong> The student slides the progress bar to 50%. The system logs "Progress updated to 50%".</li>
+            <li><strong>Use Case 4 - Celebration:</strong> When progress hits 100%, the system plays a sound and shows a confetti animation.</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 3: ANALYSIS & DESIGN -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 3: ANALYSIS & DESIGN</h1>
+
+        <h2 class="section-head">3.1 Software & Hardware Requirements</h2>
+        <h3 class="sub-section-head">Hardware Requirements:</h3>
+        <ul>
+            <li><strong>Processor:</strong> Intel Core i3 or higher (or Mobile equivalent).</li>
+            <li><strong>RAM:</strong> 4GB Minimum.</li>
+            <li><strong>Storage:</strong> 100MB free space.</li>
+            <li><strong>Device:</strong> Desktop, Laptop, or Smartphone.</li>
+        </ul>
+        <h3 class="sub-section-head">Software Requirements:</h3>
+        <ul>
+            <li><strong>Operating System:</strong> Windows 10/11, macOS, Android, or iOS.</li>
+            <li><strong>Web Browser:</strong> Google Chrome, Microsoft Edge, or Firefox (Latest Versions).</li>
+            <li><strong>Code Editor:</strong> VS Code.</li>
+            <li><strong>Runtime:</strong> Node.js (for development environment).</li>
+        </ul>
+
+        <h2 class="section-head">3.2 Technologies Used (Tech Stack)</h2>
+        <p>This project utilizes a modern "MERN-style" frontend stack:</p>
+        <ul>
+            <li><strong>React.js (Frontend Framework):</strong> Used for building the component-based UI. React allows the app to be fast and responsive, updating only parts of the screen that change.</li>
+            <li><strong>TypeScript:</strong> Used to add static typing to JavaScript, reducing bugs and improving code quality.</li>
+            <li><strong>Tailwind CSS:</strong> A utility-first CSS framework used for styling. It ensures the app looks great on mobile devices (Responsive Design).</li>
+            <li><strong>Google Gemini API:</strong> The Generative AI model used to provide intelligent study suggestions.</li>
+            <li><strong>LocalStorage API:</strong> A browser-native database used to persist user data permanently on the device without needing an internet connection for storage.</li>
+        </ul>
+
+        <h2 class="section-head">3.3 Diagrams</h2>
+        
+        <h3 class="sub-section-head">Data Flow Diagram (DFD Level 0)</h3>
+        <div class="diagram-placeholder">
+            [Student]  ---->  [Task Tracker System]  ---->  [Local Database]
+            <br>
+            [Gemini AI]  ---->  [Task Tracker System]  ---->  [Student]
+        </div>
+
+        <h3 class="sub-section-head">ER Diagram (Entity Relationship)</h3>
+        <p>Since we use a NoSQL-style document structure in LocalStorage, the data model is:</p>
+        <div class="diagram-placeholder">
+            <strong>ENTITY: TASK</strong>
+            <br>----------------------
+            <br>Task_ID (Primary Key)
+            <br>Title (String)
+            <br>Description (String)
+            <br>Deadline (Date)
+            <br>Status (Pending, In Progress, Completed)
+            <br>Progress_Level (0 - 100)
+            <br>History_Logs (List)
+        </div>
+
+        <h2 class="section-head">3.4 Module Design</h2>
+        <ol>
+            <li><strong>Dashboard Module:</strong> Displays the welcome banner, overall progress stats, and the list of active tasks.</li>
+            <li><strong>Task Operations Module:</strong> Handles creating, updating, and deleting tasks. Includes the "Long Press" menu logic for mobile users.</li>
+            <li><strong>AI Service Module:</strong> Connects to Google's servers to fetch intelligent text suggestions.</li>
+            <li><strong>Persistence Module:</strong> Manages saving and retrieving JSON data from the browser's LocalStorage.</li>
+        </ol>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 4: TESTING -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 4: TESTING & VALIDATION</h1>
+
+        <h2 class="section-head">4.1 Test Cases</h2>
+        <p>Testing ensures the system works as expected. The following tests were performed manually:</p>
+
+        <table>
+            <tr>
+                <th>Test ID</th>
+                <th>Test Description</th>
+                <th>Expected Outcome</th>
+                <th>Actual Result</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>TC-01</td>
+                <td><strong>Add New Task</strong></td>
+                <td>Task should appear in the list immediately.</td>
+                <td>Task appeared instantly.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+            <tr>
+                <td>TC-02</td>
+                <td><strong>Validation Check</strong></td>
+                <td>Submit button should be disabled if Title is empty.</td>
+                <td>Button was disabled.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+            <tr>
+                <td>TC-03</td>
+                <td><strong>AI Suggestion</strong></td>
+                <td>Clicking "AI Assist" should fill description with steps.</td>
+                <td>AI generated 3 steps for the task.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+            <tr>
+                <td>TC-04</td>
+                <td><strong>Progress Update</strong></td>
+                <td>Moving slider to 100% should mark task as Completed.</td>
+                <td>Status changed to Completed automatically.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+            <tr>
+                <td>TC-05</td>
+                <td><strong>Celebration Effect</strong></td>
+                <td>Sound and Confetti should play on 100% progress.</td>
+                <td>Audio played and confetti appeared.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+            <tr>
+                <td>TC-06</td>
+                <td><strong>Data Persistence</strong></td>
+                <td>Reloading page should not lose tasks.</td>
+                <td>All tasks remained after reload.</td>
+                <td><strong>PASS</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 5: USER MANUAL -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 5: USER MANUAL</h1>
+        
+        <h2 class="section-head">5.1 Explanation of Key Functions</h2>
+        
+        <h3 class="sub-section-head">1. Onboarding</h3>
+        <p>When you open the app for the first time, a popup will ask for your Name. Enter your name to personalize the dashboard.</p>
+
+        <h3 class="sub-section-head">2. Adding a Task</h3>
+        <p>Click the circular <strong>Floating Button (+)</strong> at the bottom right. A form will appear. Enter the Task Title and Deadline. If you are unsure how to start, click the <strong>"AI Assist"</strong> button to let the AI write a plan for you.</p>
+
+        <h3 class="sub-section-head">3. Updating Progress</h3>
+        <p>Click on any task card. A detail window will open. Drag the <strong>Slider</strong> to update your percentage (e.g., from 0% to 50%). You can also type a log message (e.g., "Finished Chapter 1") to keep a history of your work.</p>
+
+        <h3 class="sub-section-head">4. Editing and Deleting</h3>
+        <p>To Edit or Delete, <strong>Long Press (Hold)</strong> on a task card for 1 second. A menu will pop up giving you options to modify or remove the task.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 6: OBSTACLES -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 6: OBSTACLES FACED</h1>
+        
+        <p>During the development of this Mini Project, I faced several technical challenges which I had to overcome:</p>
+        
+        <h3 class="sub-section-head">1. Handling Mobile Gestures (Long Press)</h3>
+        <p><strong>Challenge:</strong> Browsers do not have a native "Long Press" event. The standard <code>onClick</code> event conflicts with holding down a button.<br>
+        <strong>Solution:</strong> I implemented a custom logic using <code>onTouchStart</code>, <code>onTouchEnd</code>, and JavaScript Timers to detect if a user is holding the screen for more than 500ms.</p>
+
+        <h3 class="sub-section-head">2. Integrating AI securely</h3>
+        <p><strong>Challenge:</strong> Connecting to the Gemini API required handling asynchronous network calls and potential errors if the internet was slow.<br>
+        <strong>Solution:</strong> I created a dedicated <code>geminiService.ts</code> file to handle all AI errors gracefully and provide fallback messages if the AI is unreachable.</p>
+
+        <h3 class="sub-section-head">3. State Synchronization</h3>
+        <p><strong>Challenge:</strong> When I updated a task inside the "Detail Modal", the main "Dashboard List" didn't update immediately.<br>
+        <strong>Solution:</strong> I used React's State Management to ensure a "Single Source of Truth", so changes in one component instantly reflect everywhere.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CHAPTER 7: CONCLUSION -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 7: CONCLUSION</h1>
+        
+        <p>The <strong>Student Task Tracker</strong> project was successfully designed and implemented. It stands as a modern solution to the age-old problem of student disorganization.</p>
+        
+        <p>By integrating <strong>Generative AI</strong>, the project goes beyond simple data entry and becomes a smart assistant for students. The use of <strong>LocalStorage</strong> ensures that the app is fast, private, and works offline, which is critical for students with unstable internet connections.</p>
+        
+        <p>This project helped me understand the full software development lifecycle, from requirement gathering to UI design, coding, testing, and documentation. It demonstrates that web technologies like React are powerful tools for building desktop-class applications.</p>
+
+        <h2 class="section-head">7.1 Future Enhancements</h2>
+        <p>In the future, this project can be expanded by:</p>
+        <ul>
+            <li><strong>Cloud Sync:</strong> Adding a MongoDB backend to sync tasks across multiple devices (Phone and Laptop).</li>
+            <li><strong>Push Notifications:</strong> Sending reminders 1 hour before a deadline.</li>
+            <li><strong>Calendar Integration:</strong> Automatically adding tasks to Google Calendar.</li>
+        </ul>
+    </div>
+
+    <!-- CHAPTER 8: REFERENCES -->
+    <div class="content-page">
+        <h1 class="chapter-head">CHAPTER 8: REFERENCES</h1>
+        
+        <ol>
+            <li><strong>React Documentation</strong> - Meta Platforms.<br>
+            <a href="https://react.dev">https://react.dev</a></li>
+            
+            <li><strong>Google Gemini AI Docs</strong> - Google AI Studio.<br>
+            <a href="https://ai.google.dev">https://ai.google.dev</a></li>
+            
+            <li><strong>Tailwind CSS Documentation</strong>.<br>
+            <a href="https://tailwindcss.com">https://tailwindcss.com</a></li>
+            
+            <li><strong>MDN Web Docs</strong> (LocalStorage & Touch Events).<br>
+            <a href="https://developer.mozilla.org">https://developer.mozilla.org</a></li>
+        </ol>
+        
+        <br><br><br>
+        <div class="center" style="margin-top: 50px;">
+            <p><strong>THANK YOU</strong></p>
+        </div>
+    </div>
+
+</body>
+</html>
