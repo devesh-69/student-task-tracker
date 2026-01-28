@@ -8,8 +8,11 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Powered by Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285f4?style=for-the-badge&logo=google)](https://ai.google.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.2-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Production-success?style=for-the-badge)](https://studenttasky.netlify.app/)
 
 _Manage your academic journey with smart AI assistance, beautiful UI, and zero dependencies on external servers_
+
+**✨ [Try it Live → https://studenttasky.netlify.app/](https://studenttasky.netlify.app/) ✨**
 
 [Features](#-features) • [Getting Started](#-getting-started) • [Usage Guide](#-usage-guide) • [Tech Stack](#-tech-stack) • [Architecture](#-architecture)
 

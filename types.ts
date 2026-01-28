@@ -28,7 +28,7 @@ export interface TaskHistoryLog {
     title: string;
     description: string;
     subtasks: Subtask[]; // Auto-detected from numbered lists
-    deadline: string; // ISO Date string
+    deadline: number; // Unix timestamp in milliseconds
     status: TaskStatus;
     progress: number; // 0 to 100, auto-calculated from subtasks
     createdAt: number;
@@ -39,7 +39,7 @@ export interface TaskHistoryLog {
   export interface CreateTaskDTO {
     title: string;
     description: string;
-    deadline: string;
+    deadline: number; // Unix timestamp in milliseconds
     status: TaskStatus;
     progress: number;
   }

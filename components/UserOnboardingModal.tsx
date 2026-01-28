@@ -79,8 +79,10 @@ export const UserOnboardingModal: React.FC<UserOnboardingModalProps> = ({ isOpen
             id="apiKey"
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
+            pattern="AIza[0-9A-Za-z-_]{35}"
+            title="API key should start with 'AIza' and be 39 characters long"
             className="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring font-mono text-xs"
-            placeholder="AIzaSy... (enables AI features)"
+            placeholder="AIzaSyC..."
           />
           <div className="flex items-start gap-2 text-xs text-blue-700">
             <span>•</span>

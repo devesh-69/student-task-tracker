@@ -1,8 +1,10 @@
 {
   "name": "student-task-tracker",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "homepage": "https://studenttasky.netlify.app",
+  "description": "A modern, intelligent task management system for students with AI-powered features",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

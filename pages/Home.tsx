@@ -63,6 +63,7 @@ export const Home: React.FC = () => {
     isOpen: false,
     taskId: null,
   });
+  const [isDeletingTask, setIsDeletingTask] = useState(false);
   // Interaction States
   const [selectedTaskForDetail, setSelectedTaskForDetail] = useState<Task | null>(null);
   const [longPressedTask, setLongPressedTask] = useState<Task | null>(null);
@@ -273,17 +274,19 @@ export const Home: React.FC = () => {
 
   const handleConfirmDelete = async () => {
     const id = deleteConfirmationState.taskId;
-    if (!id) return;
+    if (!id || isDeletingTask) return;
     
+    setIsDeletingTask(true);
     try {
       await taskService.deleteTask(id);
       await fetchTasks();
       setLongPressedTask(null);
-      toast.success('Task deleted.');
+      toast.success('Task deleted successfully!');
     } catch (error) {
       console.error("Failed to delete task", error);
       toast.error("Failed to delete task. Please try again.");
     } finally {
+      setIsDeletingTask(false);
       setDeleteConfirmationState({ isOpen: false, taskId: null });
     }
   };

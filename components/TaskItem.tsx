@@ -18,7 +18,7 @@ interface TaskItemProps {
  * Uses TouchEvents and MouseEvents to distinguish between tap and hold.
  */
 export const TaskItem: React.FC<TaskItemProps> = ({ task, onClick, onLongPress }) => {
-  const isOverdue = new Date(task.deadline) < new Date() && task.status !== TaskStatus.COMPLETED;
+  const isOverdue = task.deadline < Date.now() && task.status !== TaskStatus.COMPLETED;
   
   // Long press logic refs and state
   // Fixed: Replaced NodeJS.Timeout with ReturnType<typeof setTimeout> to avoid namespace error in environments without Node types
@@ -67,7 +67,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onClick, onLongPress }
   };
 
   // Helper to calculate remaining days text
-  const getDaysRemainingText = (deadline: string) => {
+  const getDaysRemainingText = (deadline: number) => {
     if (task.status === TaskStatus.COMPLETED) return null;
 
     const today = new Date();

@@ -18,7 +18,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({ initialData, onSubmit, onCan
   const [formData, setFormData] = useState<CreateTaskDTO>({
     title: '',
     description: '',
-    deadline: '',
+    deadline: Date.now() + 86400000, // Default: tomorrow
     status: TaskStatus.PENDING,
     progress: 0
   });
@@ -41,9 +41,14 @@ export const TaskForm: React.FC<TaskFormProps> = ({ initialData, onSubmit, onCan
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
-    const updates: any = {
+    let updates: any = {
       [name]: name === 'progress' ? parseInt(value) || 0 : value
     };
+    
+    // Convert date string to timestamp for deadline
+    if (name === 'deadline' && value) {
+      updates.deadline = new Date(value).getTime();
+    }
     
     // Auto-sync: Set progress to 100% when marking as Completed
     if (name === 'status' && value === TaskStatus.COMPLETED) {
@@ -165,7 +170,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({ initialData, onSubmit, onCan
           name="deadline"
           type="date"
           label="Deadline"
-          value={formData.deadline}
+          value={new Date(formData.deadline).toISOString().split('T')[0]}
           onChange={handleChange}
           min={new Date().toISOString().split('T')[0]}
           required
