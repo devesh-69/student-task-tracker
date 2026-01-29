@@ -1,8 +1,10 @@
-import { Task, CreateTaskDTO } from '../types';
 import { authService } from './authService';
 import { localStorageService } from './localStorageService';
+import type { Task, CreateTaskDTO, Subtask } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Smart API URL: Use /api in production (Netlify), localhost in development
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api');
 
 // Helper to get auth headers
 const getHeaders = () => ({

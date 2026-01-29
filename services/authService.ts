@@ -1,6 +1,8 @@
 // Authentication Service - Supports Guest Mode + Optional Login
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Smart API URL: Use /api in production (Netlify), localhost in development
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api');
 const TOKEN_KEY = 'stt_auth_token';
 const USER_KEY = 'stt_user';
 

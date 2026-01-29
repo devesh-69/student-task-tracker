@@ -8,7 +8,9 @@ import { localStorageService } from "./localStorageService";
  * Supports both guest mode (localStorage) and authenticated (database) API key storage.
  */
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// Smart API URL: Use /api in production (Netlify), localhost in development
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:5000/api' : '/api');
 
 // Fetch API key - localStorage for guests, database for authenticated
 const getApiKey = async (): Promise<string> => {
