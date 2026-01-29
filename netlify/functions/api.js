@@ -1,0 +1,94 @@
+// Netlify Serverless Function - API Handler
+const serverless = require("serverless-http");
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const app = express();
+
+// Middleware
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://studenttasky.netlify.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        return callback(
+          new Error("CORS policy: This origin is not allowed"),
+          false,
+        );
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  }),
+);
+app.use(express.json());
+
+// MongoDB connection singleton
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) {
+    console.log("Using existing MongoDB connection");
+    return;
+  }
+
+  try {
+    const mongoURI = process.env.MONGODB_URI;
+    if (!mongoURI) {
+      throw new Error("MONGODB_URI not found in environment variables");
+    }
+
+    await mongoose.connect(mongoURI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+
+    isConnected = true;
+    console.log("✅ MongoDB connected successfully");
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    throw error;
+  }
+};
+
+// Import routes
+const authRoutes = require("../../server/routes/auth");
+const taskRoutes = require("../../server/routes/tasks");
+const userRoutes = require("../../server/routes/user");
+const apiKeyRoutes = require("../../server/routes/apikey");
+
+// Mount routes (without /api prefix since netlify.toml handles that)
+app.use("/auth", authRoutes);
+app.use("/tasks", taskRoutes);
+app.use("/user", userRoutes);
+app.use("/apikey", apiKeyRoutes);
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    mongodb: isConnected ? "connected" : "disconnected",
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// Connect to DB before handling requests
+const handler = async (event, context) => {
+  // Prevent Lambda from timing out
+  context.callbackWaitsForEmptyEventLoop = false;
+
+  // Connect to DB
+  await connectDB();
+
+  // Handle request with Express
+  return serverless(app)(event, context);
+};
+
+module.exports.handler = handler;
