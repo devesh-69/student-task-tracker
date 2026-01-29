@@ -7,7 +7,7 @@
 # Redirect all API calls to serverless functions
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  to = "/.netlify/functions/api/:splat"
   status = 200
 
 # SPA fallback for client-side routing
