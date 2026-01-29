@@ -64,14 +64,23 @@ const taskRoutes = require("../../server/routes/tasks");
 const userRoutes = require("../../server/routes/user");
 const apiKeyRoutes = require("../../server/routes/apikey");
 
-// Mount routes (without /api prefix since netlify.toml handles that)
-app.use("/auth", authRoutes);
-app.use("/tasks", taskRoutes);
-app.use("/user", userRoutes);
-app.use("/apikey", apiKeyRoutes);
+// Mount routes
+// Note: Netlify rewrites /api/* to this function, but the path seen by Express includes /api
+const router = express.Router();
+
+router.use("/auth", authRoutes);
+router.use("/tasks", taskRoutes);
+router.use("/user", userRoutes);
+router.use("/apikey", apiKeyRoutes);
+
+// Mount // Mount router at /api
+app.use("/api", router);
+
+// Also support direct function calls
+app.use("/.netlify/functions/api", router);
 
 // Health check endpoint
-app.get("/health", (req, res) => {
+router.get("/health", (req, res) => {
   res.json({
     status: "ok",
     mongodb: isConnected ? "connected" : "disconnected",
