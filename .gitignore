@@ -43,3 +43,9 @@ Thumbs.db
 # ======================
 *.pem
 *.key
+
+# ======================
+# PROJECT DOCS (LOCAL ONLY)
+# ======================
+black_book_sections/
+blackbook.txt

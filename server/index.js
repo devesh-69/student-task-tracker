@@ -7,26 +7,10 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://studenttasky.netlify.app",
-];
-
+// Middleware - Allow all origins for cross-network/device access
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, etc)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        return callback(
-          new Error("CORS policy: This origin is not allowed"),
-          false,
-        );
-      }
-      return callback(null, true);
-    },
+    origin: true, // Allow any origin
     credentials: true,
   }),
 );
